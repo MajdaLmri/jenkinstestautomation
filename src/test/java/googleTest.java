@@ -15,18 +15,23 @@ public class googleTest extends TestCase {
         System.out.println("launching Chrome browser");
         System.setProperty("webdriver.chrome.driver", driverPath);
         driver = new ChromeDriver();
-    }
-
-    @Test
-    public void verifyHomepageTitle() {
-
         driver.get(baseUrl);
         try {
-            Thread.sleep(5000);
+            Thread.sleep(7000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test(enabled = false, priority=1)
+    public void verifyHomepage() {
         Assert.assertEquals(true, driver.findElement(By.id("hplogo")).isDisplayed());
+
+    }
+
+    @Test (priority=0)
+    public void verifyHomepageTitle() {
+        Assert.assertEquals(true, driver.getTitle().equals("Google"));
 
     }
 
